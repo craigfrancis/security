@@ -90,29 +90,29 @@ It will also mean that a Content Security Policy (CSP) will be easier to write f
 
 ---
 
-Some more examples of third party content:
+## More examples:
 
-1. Comment Areas
+Comment Areas
 
 https://disqus.com/admin/create/
 
 https://developers.facebook.com/docs/plugins/comments
 
-2. Calendars
+Calendars
 
 https://support.google.com/calendar/answer/41207
 
-3. Timelines
+Timelines
 
 https://dev.twitter.com/web/embedded-timelines
 
-4. Maps
+Maps
 
 https://developers.google.com/maps/documentation/javascript/
 
 https://www.bingmapsportal.com/isdk/ajaxv7
 
-5. Like Buttons
+Like Buttons
 
 https://dev.twitter.com/web/tweet-button/javascript-create
 
