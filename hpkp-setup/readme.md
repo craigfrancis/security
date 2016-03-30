@@ -32,9 +32,9 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
 2. Generate hashes for both of the Public keys. These will be used in the HPKP header later.
 
-		openssl rsa -in "example.com.key"         -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
+		openssl rsa -in "example.com.key"         -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64;
 
-		openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
+		openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64;
 
 3. Store the second (backup1) key-pair somewhere safe, probably somewhere encrypted like a password manager. Then securely delete the original (the one outside of the backup location):
 
@@ -66,8 +66,8 @@ Note: If the strength of the keys is ever deemed to be too weak (as was the case
 
 As an aside, you can also extract the Public key from your CSR:
 
-	openssl req -in "example.com.csr" -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+	openssl req -in "example.com.csr" -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64;
 
 And your certificate:
 
-	openssl x509 -in "example.com.crt" -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+	openssl x509 -in "example.com.crt" -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64;
