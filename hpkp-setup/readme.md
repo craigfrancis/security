@@ -22,15 +22,15 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
 ---
 
-1. Generate two public/private key-pairs on a computer that is **not** the Live server. The second one is the "backup1" key-pair.
+1. Generate two Public/Private key-pairs on a computer that is **not** the Live server.
 
         openssl genrsa -out "example.com.key" 2048;
 
         openssl genrsa -out "example.com.backup1.key" 2048;
 
-    This second key-pair should probably use "-passout stdin" to protect the key while it's in storage.
+    This second key-pair is a backup, and should probably use "-passout stdin" to protect the key while it's in storage.
 
-2. Generate hashes for both of the public keys. These will be used in the HPKP header later.
+2. Generate hashes for both of the Public keys. These will be used in the HPKP header later.
 
         openssl rsa -in "example.com.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
