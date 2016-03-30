@@ -60,7 +60,7 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
 10. Replace your old certificate and old key-pair, and update the `Public-Key-Pins` header to remove the old hash, and add the new "backup2" key-pair.
 
-Note: If the strength of the keys is ever deemed to be too weak (as was the case with 1024 bit keys), then you **must** generate new backup keys, and update the the `Public-Key-Pins` as soon as possible,
+Note: If the strength of the keys is ever deemed to be too weak (as was the case with 1024 bit keys), then you **must** generate new backup keys, and update the `Public-Key-Pins` header as soon as possible,
 
 ---
 
