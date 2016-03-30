@@ -30,13 +30,13 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
     This second key-pair should probably use "-passout stdin" to protect the key while it's in storage.
 
-2. Generate hashes for both of the public keys. These will be used in the HPKP header:
+2. Generate hashes for both of the public keys. These will be used in the HPKP header later.
 
         openssl rsa -in "example.com.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
         openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
-3. Generate a single CSR (Certificate Signing Request) for the first key-pair, where you include the domain name in the CN (Common Name) field:
+3. Generate a single CSR (Certificate Signing Request) for the first key-pair:
 
         openssl req -new -subj "/C=GB/ST=Area/L=Town/O=Company/CN=example.com" -key "example.com.key" -out "example.com.csr";
 
