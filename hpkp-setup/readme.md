@@ -50,7 +50,7 @@ If so, or you want to ignore this advice, the process I follow for implementing 
 
 6. On the Live server, upload and setup the first key-pair (and its certificate). At this point you can add the `Public-Key-Pins` header, using the two hashes you created in step 2.
 
-		Header Set Public-Key-Pins:pin-sha256="XXX"; pin-sha256="XXX"; max-age=2592000; includeSubDomains; report-uri="XXX"
+		Public-Key-Pins: pin-sha256="XXX"; pin-sha256="XXX"; max-age=2592000; includeSubDomains; report-uri="XXX"
 
 	Note: **Only** the first key-pair has been uploaded to the server, and we only pin for about 30 days.
 
