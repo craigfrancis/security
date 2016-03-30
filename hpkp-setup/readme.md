@@ -40,7 +40,7 @@ If so, or you want to ignore this advice, the process I follow for implementing 
 
 		shred -u example.com.backup1.key;
 
-	This backup key (now in a safe location) won't expire, as it's just a key-pair, it just needs to be ready for when you need to get your next certificate.
+	This backup key (now in a safe location) won't expire, as it's just a key-pair. It just needs to be ready for when you need to get your next certificate.
 
 4. Generate a single CSR (Certificate Signing Request) for the first key-pair:
 
