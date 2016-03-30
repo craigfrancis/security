@@ -18,7 +18,7 @@ The only time HPKP is useful is when you are a **big** target (e.g. a Bank), whe
 
 Generally speaking, do you have more than one person managing your sever infrastructure?
 
-If so, or you want to ignore this advice, the process I've found for implementing HPKP is below...
+If so, or you want to ignore this advice, the process I follow for implementing HPKP is below...
 
 ---
 
