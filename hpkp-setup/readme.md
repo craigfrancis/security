@@ -64,7 +64,7 @@ If so, or you want to ignore this advice, the process I follow for implementing 
 
 10. Generate a new backup key-pair (backup2), get its hash, and store it in a safe place (again, **not** on the Live server).
 
-11. Replace your old certificate and old key-pair, and update the `Public-Key-Pins` header to remove the old hash, and add the new "backup2" key-pair.
+11. Replace your old certificate and old key-pair, update the `Public-Key-Pins` header to remove the old hash, and add the new "backup2" key-pair.
 
 Note: If the strength of the keys is ever deemed to be too weak (as was the case with 1024 bit keys), then you **must** generate new backup keys, and update the `Public-Key-Pins` header as soon as possible,
 
