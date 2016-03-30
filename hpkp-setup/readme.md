@@ -14,7 +14,7 @@ In general, most websites should **not** use key pinning.
 
 It is far to easy to break your own website, where your time would be better spent adding a [CSP Header](https://developer.mozilla.org/en-US/docs/Web/Security/CSP) (Content Security Policy), and if you have one already, try removing the `unsafe-inline` (which you almost certainly have in there).
 
-The only time HPKP is useful is when you are a **big** target (e.g. a Bank), where it is likely that an attacker will be able to get a valid HTTPS certificate from a trusted CA (Certificate Authority), *and* be able to Man-In-The-Middle the connection for your customers (neither of these are easy).
+The only time HPKP is useful is when you are a **big** target (e.g. a Bank), where it's likely that an attacker will give up finding XSS exploits and other vulnerabilities, and instead attempt to get a valid HTTPS certificate from a trusted CA (Certificate Authority), *and* be able to Man-In-The-Middle the connection for your customers (neither of these are easy).
 
 Generally speaking, do you have more than one person managing your sever infrastructure?
 
