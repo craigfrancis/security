@@ -24,29 +24,33 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
 1. Generate two Public/Private key-pairs on a computer that is **not** the Live server.
 
-        openssl genrsa -out "example.com.key" 2048;
+		openssl genrsa -out "example.com.key" 2048;
 
-        openssl genrsa -out "example.com.backup1.key" 2048;
+		openssl genrsa -out "example.com.backup1.key" 2048;
 
-    This second key-pair is a backup, and should probably use "-passout stdin" to protect the key while it's in storage.
+	This second key-pair is a backup, and should probably use "-passout stdin" to protect the key while it's in storage.
 
 2. Generate hashes for both of the Public keys. These will be used in the HPKP header later.
 
-        openssl rsa -in "example.com.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
+		openssl rsa -in "example.com.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
-        openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
+		openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
-3. Generate a single CSR (Certificate Signing Request) for the first key-pair:
+3. Store the second (backup1) key-pair somewhere safe, probably somewhere encrypted like a password manager. Then securely delete the original (the one outside of the backup location):
 
-        openssl req -new -subj "/C=GB/ST=Area/L=Town/O=Company/CN=example.com" -key "example.com.key" -out "example.com.csr";
+		shred -u example.com.backup1.key;
 
-4. Send this CSR to the CA (Certificate Authority), and go though the dance to prove you own the domain. They will give you back a single certificate that will typically expire within a year or two.
+	This backup key (now in a safe location) won't expire, as it's just a key-pair, it just needs to be ready for when you need to get your next certificate.
 
-5. On the Live server, upload and setup the first key-pair (and its certificate). At this point you can add the "Public-Key-Pins" header, using the two hashes you created in step 2.
+4. Generate a single CSR (Certificate Signing Request) for the first key-pair:
 
-    Note: **Only** the first key-pair has been uploaded to the server so far.
+		openssl req -new -subj "/C=GB/ST=Area/L=Town/O=Company/CN=example.com" -key "example.com.key" -out "example.com.csr";
 
-6. Store the second (backup1) key-pair somewhere safe, probably somewhere encrypted like a password manager. It won't expire, as it's just a key-pair, it just needs to be ready for when you need to get your next certificate.
+5. Send this CSR to the CA (Certificate Authority), and go though the dance to prove you own the domain. They will give you back a single certificate that will typically expire within a year or two.
+
+6. On the Live server, upload and setup the first key-pair (and its certificate). At this point you can add the "Public-Key-Pins" header, using the two hashes you created in step 2.
+
+	Note: **Only** the first key-pair has been uploaded to the server.
 
 7. Time passes... probably just under a year (if waiting for a certificate to expire), or maybe sooner if you find that your server has been compromised and you need to replace the key-pair and certificate.
 
