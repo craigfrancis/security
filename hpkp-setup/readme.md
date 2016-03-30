@@ -32,7 +32,7 @@ If so, or you want to ignore this advice, the process I've found for implementin
 
 2. Generate hashes for both of the Public keys. These will be used in the HPKP header later.
 
-		openssl rsa -in "example.com.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
+		openssl rsa -in "example.com.key"         -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
 		openssl rsa -in "example.com.backup1.key" -outform der -pubout | openssl dgst -sha256 -binary | openssl enc -base64
 
