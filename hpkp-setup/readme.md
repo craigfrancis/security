@@ -48,9 +48,11 @@ If so, or you want to ignore this advice, the process I follow for implementing 
 
 5. Send this CSR to the CA (Certificate Authority), and go though the dance to prove you own the domain. They will give you back a single certificate that will typically expire within a year or two.
 
-6. On the Live server, upload and setup the first key-pair (and its certificate). At this point you can add the "Public-Key-Pins" header, using the two hashes you created in step 2.
+6. On the Live server, upload and setup the first key-pair (and its certificate). At this point you can add the `Public-Key-Pins` header, using the two hashes you created in step 2.
 
-	Note: **Only** the first key-pair has been uploaded to the server.
+		Header Set Public-Key-Pins:pin-sha256="XXX"; pin-sha256="XXX"; max-age=2592000; includeSubDomains; report-uri="XXX"
+
+	Note: **Only** the first key-pair has been uploaded to the server, and we only pin for about 30 days.
 
 7. Time passes... probably just under a year (if waiting for a certificate to expire), or maybe sooner if you find that your server has been compromised and you need to replace the key-pair and certificate.
 
@@ -71,3 +73,13 @@ As an aside, you can also extract the Public key from your CSR:
 And your certificate:
 
 	openssl x509 -in "example.com.crt" -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64;
+
+Or get it from a website directly:
+
+	openssl s_client -connect www.thriveapproach.co.uk:443 | openssl x509 -pubkey -noout | openssl rsa -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+
+---
+
+It's also possible to pin to your Certificate Authority, but I personally do not believe this is a good idea.
+
+For example, they may change their root or intermediate certificates (e.g. when it comes to your certificates renewal, or if they are compromised), and its possible for them (or a different CA who use their root certificate) to issue a duplicate certificate and give it to someone else.
