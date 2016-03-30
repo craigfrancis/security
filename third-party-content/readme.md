@@ -19,7 +19,7 @@ While the textContent may still contain sensitive information (e.g. the username
 
 And, with the main document only granting read-only access, website owners can trust that the advertising companies are not doing anything they shouldn't be, such as editing the content of the page, changing links, adding key press event handlers, etc.
 
-	<iframe sandbox="allow-parent-text-content-reading ...
+	<iframe sandbox="allow-parent-text-content-read ...
 
 ---
 
@@ -75,7 +75,7 @@ For example Disqus isn't always able to keep the person logged in, same goes wit
 
 So in summary, by using something like:
 
-	<iframe sandbox="allow-parent-text-content-reading allow-user-top-navigation allow-scripts" cgroup="priority medium;" src="https://www.example.com/ads.js" />
+	<iframe sandbox="allow-parent-text-content-read allow-user-top-navigation allow-scripts" cgroup="priority medium;" src="https://www.example.com/ads.js" />
 
 	iframe {
 		width: 300px;
